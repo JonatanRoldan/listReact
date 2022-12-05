@@ -25,13 +25,23 @@ export function Signup() {
     }
   }
   return (
-    <div className="contenedorPrincipal">
+    <div class="center">
       <h1>Registrate</h1>
-      {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <input type="email" name='email'placeholder="Email Address*" onChange={handleChange}/>
-        <input type="password" name='password' placeholder="Password*" onChange={handleChange}/>
-        <button>SIGN UP</button>
+        <div class="txt_field">
+         <input type="text" name='name' /><span></span><label>Name*</label>
+        </div>
+        <div class="txt_field">
+        <input type="email" name='email' onChange={handleChange}/><span></span><label>Email Address*</label>
+        </div>
+        <div class="txt_field">
+        <input type="password" name='password' onChange={handleChange}/><span></span><label>Password*</label>
+        </div>
+        <input type="submit" value="SIGN UP"/>
+        {error && <p>{error}</p>}
+        <div class="signup_link">
+          To <a href="/">Login</a>
+        </div>
       </form>
     </div>
   )

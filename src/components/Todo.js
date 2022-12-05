@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-export default function Todo({item, onUpdate, onDelete}){
+export default function Todo({item, onUpdate, onDelete,onComplet}){
     const [edit, setEdit] = useState(false);
     console.log(item)
     function FormEdit(){
@@ -21,17 +21,21 @@ export default function Todo({item, onUpdate, onDelete}){
         return (
             <form className="todoUpdate" onSubmit={handleSubmit}>
                 <input type="text" className="todoInput" onChange={handleChange} value={newValue}/>
-                <button className="buttonUp" onClick={handleClick}>Actualizar</button>
+                <i className="bi bi-arrow-clockwise" onClick={handleClick}></i>
             </form>
         )
     }
+    
 
 function TodoElement(){
   return <div className="todoInfo">
-    <input type="checkbox"/>
-    <span className="todoTitle">{item.tarea}</span>
-    <button className="btnEditar" onClick={() => setEdit(true)}>Editar</button>
-    <button className="btnBorrar" onClick={(e) => onDelete(item.id)}>Eliminar</button>
+    <i className="bi bi-file-check" onClick={() => onComplet(item.id)}/>
+    <e className={item.completado ? 'true' : ''}>
+        <span className="tarea">{item.tarea}</span>
+    </e>
+    <i className="bi bi-pencil" onClick={() => setEdit(true)}></i>
+    <i className="bi bi-trash3" onClick={(e) => onDelete(item.id)}></i>
+    
   </div>    
 }
 

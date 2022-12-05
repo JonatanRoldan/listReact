@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import './login.css'
 
 export function Login() {
   const [user, setUser] = useState({
@@ -25,17 +26,22 @@ export function Login() {
     }
   };
   return (
-    <div className="contenedorPrincipal">
+    <div class="center">
       <h1>Iniciar Sesion</h1>
-      {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <input type="email" name='email'placeholder="Email Address*" onChange={handleChange}/>
-        <input type="password" name='password' placeholder="Password*" onChange={handleChange}/>
-        <button>SIGN IN</button>
+        <div class="txt_field">
+        <input type="email" name='email' onChange={handleChange}/><span></span><label>Email Address*</label>
+        </div>
+        <div class="txt_field">
+        <input type="password" name='password' onChange={handleChange}/><span></span><label>Password*</label>
+        </div>
+        <div class="pass">Forgot Password?</div>
+        <input type="submit" value="Login"/>
+        {error && <p>{error}</p>}
+        <div class="signup_link">
+          Not a member? <a href="signup">Signup</a>
+        </div>
       </form>
-      
-      <a href="signup">Don't have an account? Sign Up</a>
-      
     </div>
   )
 }

@@ -28,7 +28,7 @@ export function List() {
     const temp =[nuevaTarea,...listadoTareas]
     setListadoTareas(temp)
     setTarea('')
-    //console.log(listadoTareas)
+    console.log(listadoTareas)
   }
   function handleChange(e){
     setTarea(e.target.value)
@@ -43,12 +43,17 @@ export function List() {
     const temp = listadoTareas.filter((item) => item.id !== id);
     setListadoTareas(temp)
   }
+  function handleComplet(id){
+    const temp = [...listadoTareas]
+    const item = temp.find(item => item.id === id)
+    item.completado = !item.completado;
+    setListadoTareas(temp);
+  }
+
   if(loading)return<h1>Loading</h1>
   return (
     <div>
-      <button onClick={handleLogaut}>
-        logout
-      </button>
+    <i className="bi bi-box-arrow-left fs-1"  onClick={handleLogaut}></i>
       <div className="contenedorPrincipal">
         <h3>{user.email}</h3>
         <div className="contenedorFormulario">
@@ -57,7 +62,7 @@ export function List() {
         <div className='contenedorTareas'>
           <div className='contenedorInfoTareas'>
             {listadoTareas.filter(item => item.usuario===user.uid).map((item)=>(
-              <Todo key={item.id} item={item} onUpdate={handleUpdate} onDelete={handleDelete}/>
+              <Todo key={item.id} item={item} onUpdate={handleUpdate} onDelete={handleDelete} onComplet={handleComplet} />
             ))}
           </div>
         </div>
